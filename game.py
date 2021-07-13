@@ -29,6 +29,8 @@ def game(name):
             print("Your guess is not a number, please try again.")
             tries -= 1
         tries += 1
+    
+    return tries - 1
 
 
 
@@ -37,6 +39,13 @@ name = input("Howdy, what's your name?\n")
 
 flag = 'y'
 
+best_scores = []
+
 while flag == 'y':
-    game(name)
-    flag = input("Would you like to play again? Enter 'y' for yes, enter anything for no").lower()
+    tries = game(name)
+    best_scores.append(tries)
+
+    
+    flag = input("Would you like to play again? Enter 'y' for yes, enter anything for no\n").lower()
+
+print("best score is: ", min(best_scores))
