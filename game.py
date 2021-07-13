@@ -15,14 +15,20 @@ guess = -1
 tries = 0
 
 while guess != number:
-    guess = int(input("Your guess?\n"))
+    
+    try:
+        guess = int(input("Your guess?\n"))
+        if guess < number:
+            print("Your guess is too low, try again.")
+        elif guess > number:
+            print("Your guess is too high, try again.")
+        else: 
+            print(f"Well done, {name}! You found my number in {tries} tries!")
+    except:
+        print("Your guess is not a number, please try again.")
+        tries -= 1
     tries += 1
-    if guess < number:
-        print("Your guess is too low, try again.")
-    elif guess > number:
-        print("Your guess is too high, try again.")
-    else: 
-        print(f"Well done, {name}! You found my number in {tries} tries!")
+
 
 
 
