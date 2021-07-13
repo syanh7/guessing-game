@@ -8,17 +8,20 @@ import random
 
 def game(name):
     print("{}, I'm thinking of a number between 1 and 100".format(name))
-    print("Try to guess my number")
+    
+    limit = int(input("How many tries would you like?\n"))
 
-    number = random.randint(1, 101)
+    number = random.randint(1, 100)
 
     guess = -1
     tries = 0
 
+
+
     while guess != number:
         
         try:
-            guess = int(input("Your guess?\n"))
+            guess = int(input("Your guess? You have {} guesses remaining\n".format(limit - tries)))
             if guess < number:
                 print("Your guess is too low, try again.")
                 tries += 1
@@ -28,12 +31,17 @@ def game(name):
             else: 
                 tries += 1
                 print(f"Well done, {name}! You found my number in {tries} tries!")
+                return tries
                 
         except:
             print("Your guess is not a number, please try again.")
 
+        if tries == limit:
+            print("Too many tries! The number was ", number)
+            return "You didn't win any rounds"
+
      
-    return tries
+    # return tries
 
 
 
@@ -51,4 +59,7 @@ while flag == 'y':
     
     flag = input("Would you like to play again? Enter 'y' for yes, enter anything for no\n").lower()
 
-print("best score is: ", min(best_scores))
+if min(best_scores).isnumeric():
+    print("best score is: ", min(best_scores))
+else:
+    print("you never won")
