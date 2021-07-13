@@ -21,16 +21,19 @@ def game(name):
             guess = int(input("Your guess?\n"))
             if guess < number:
                 print("Your guess is too low, try again.")
+                tries += 1
             elif guess > number:
                 print("Your guess is too high, try again.")
+                tries += 1
             else: 
+                tries += 1
                 print(f"Well done, {name}! You found my number in {tries} tries!")
+                
         except:
             print("Your guess is not a number, please try again.")
-            tries -= 1
-        tries += 1
-    
-    return tries - 1
+
+     
+    return tries
 
 
 
