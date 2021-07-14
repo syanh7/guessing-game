@@ -8,6 +8,7 @@ import random
 
 def game(name):
     
+    
     limit = int(input("How many tries would you like?\n"))
 
     lower = int(input("Enter a starting number\n"))
@@ -47,26 +48,65 @@ def game(name):
      
     # return tries
 
+def computer():
+    print("Select a number between 1 and 100 in your head")
+    lower = 1
+    upper = 100
+    guess = random.randint(lower, upper)
+
+
+    while True:
+        print(f"Is your number {guess}?")
+        userResponse = int(input("[1] Too high, [2] Too low, [3] You won!"))
+        if userResponse == 1:
+            upper = guess
+        elif userResponse == 2:
+            lower = guess
+        else:
+            print("The computer wins!")
+            break
+        guess = random.randint(lower, upper)
+ 
+    
+    
 
 
 
-name = input("Howdy, what's your name?\n")
 
-flag = 'y'
+def main():
+    name = input("Howdy, what's your name?\n")
+    option = options()
 
-best_scores = []
+    if option == 1:
+        flag = 'y'
 
-while flag == 'y':
-    tries = game(name)
-    if type(tries) is int:
-        best_scores.append(tries)
+        best_scores = []
+
+        while flag == 'y':
+            tries = game(name)
+            if type(tries) is int:
+                best_scores.append(tries)
+
+            flag = input("Would you like to play again? Enter 'y' for yes, enter anything for no\n").lower()
+
+        if len(best_scores) > 0:
+            print("best score is: ", min(best_scores))
+        else:
+            print("you never won")
+    else:
+        computer()
 
     
-    flag = input("Would you like to play again? Enter 'y' for yes, enter anything for no\n").lower()
 
-if len(best_scores) > 0:
-    print("best score is: ", min(best_scores))
-else:
-    print("you never won")
+
+
+def options():
+    return int(input("Enter [1] to guess the number or [2] to have the computer guess your number\n"))
+
+
+main()
+
+
+
 
 #test
