@@ -7,11 +7,15 @@ import random
 
 
 def game(name):
-    print("{}, I'm thinking of a number between 1 and 100".format(name))
     
     limit = int(input("How many tries would you like?\n"))
 
-    number = random.randint(1, 100)
+    lower = int(input("Enter a starting number\n"))
+    upper = int(input("Enter a ending number\n"))
+
+    print("{}, I'm thinking of a number between {} and {}".format(name, lower, upper))
+
+    number = random.randint(lower, upper)
 
     guess = -1
     tries = 0
@@ -54,12 +58,13 @@ best_scores = []
 
 while flag == 'y':
     tries = game(name)
-    best_scores.append(tries)
+    if type(tries) is int:
+        best_scores.append(tries)
 
     
     flag = input("Would you like to play again? Enter 'y' for yes, enter anything for no\n").lower()
 
-if min(best_scores).isnumeric():
+if len(best_scores) > 0:
     print("best score is: ", min(best_scores))
 else:
     print("you never won")
