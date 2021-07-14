@@ -57,7 +57,7 @@ def computer():
 
     while True:
         print(f"Is your number {guess}?")
-        userResponse = int(input("[1] Too high, [2] Too low, [3] You won!"))
+        userResponse = int(input("[1] Too high, [2] Too low, [3] You won!\n"))
         if userResponse == 1:
             upper = guess
         elif userResponse == 2:
